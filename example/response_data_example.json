@@ -1,0 +1,51 @@
+{
+    "name": "Max Mustermann",
+    "class": "10A (has to start with a number)",
+    "level": 10,
+    "subjects": [
+        {
+            "name": "Deutsch",
+            "abbr": "De",
+            "finalGradeSem1": "12",
+            "finalGradeSem2": null,
+            "grades": [
+                {
+                    "date": "01.01.2020",
+                    "value": "12 | 3+ | ?",
+                    "comment": "participation",
+                    "isExam": false,
+                    "semester": 1
+                },
+                {
+                    "date": "01.01.2020",
+                    "value": "12 | 3+ | ?",
+                    "comment": "written exam",
+                    "isExam": true,
+                    "semester": 2
+                }
+            ]
+        }
+    ],
+    "missingDays": [
+        {
+            "date": "05.01.2020",
+            "reason": "Krankheit",
+            "excused": "entschuldigt | nicht entschieden | unentschuldigt",
+            "semester": "1."
+        }
+    ],
+    "missingHours": [
+        {
+            "date": "06.01.2020",
+            "subject": "Englisch",
+            "time": "2. Stunde",
+            "reason": "verschlafen",
+            "excused": "entschuldigt | nicht entschieden | unentschuldigt",
+            "semester": "2."
+        }
+    ],
+    "totalMissingDays": 2,
+    "totalUnexcusedMissingDays": 0,
+    "totalMissingHours": 3,
+    "totalUnexcusedMissingHours": 1
+}

@@ -11,29 +11,54 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/to/develop-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+A lightweight api to fetch and interpret data from the Home.InfoPoint service.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Depend on the package inside your pubspec.yaml:
+
+```yaml
+dependencies:
+    home_info_point_client:
+        git:
+            url: https://github.com/Venatrixx/home_info_point_client
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+### 1. Setup the Home.InfoPoint (Hip) client:
 ```dart
-const like = 'sample';
+final client = HipClient(HipConfig(schoolCode: 'my-school', username: '123456', password: 'ABCDEF'));
 ```
+(You typically find the school code inside the url: https://homeinfopoint.de/[schoolCode])
 
-## Additional information
+&nbsp;
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+### 2. (optional) Check if the credentials are valid and a connection can be established:
+```dart
+bool isValid = await client.verify();
+```
+&nbsp;
+
+### 3. Fetch the data from the server:
+```dart
+await client.fetch();
+```
+&nbsp;
+
+### 4. Get the interpreted data:
+```dart
+dynamic data = await client.asJson();
+```
+&nbsp;
+
+**Have fun!**
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+### Any questions left or need help with the package?
+Contact me via *info@nice-2know.de*!
