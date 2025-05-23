@@ -25,6 +25,7 @@ dependencies:
         git:
             url: https://github.com/Venatrixx/home_info_point_client
 ```
+(The package itself contains the http and html dependencies.)
 
 ## Usage
 
