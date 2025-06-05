@@ -47,15 +47,14 @@ Map interpretData(String htmlString) {
         data['missingHours'] = missingHours;
       } else if (htmlData[i].text == "Zusammenfassung") {
         final rows = htmlData[i + 1].children[0].children;
-        data['totalMissingDays'] = rows[0].children[1].text;
-        data['totalUnexcusedMissingDays'] = rows[1].children[1].text.substring(
-          0,
-          rows[1].children[1].text.indexOf(RegExp('^[0-9]')),
+        data['totalMissingDays'] = int.tryParse(rows[0].children[1].text);
+        data['totalUnexcusedMissingDays'] = int.tryParse(rows[1].children[1].text);
+
+        data['totalMissingHours'] = int.tryParse(
+          rows[2].children[1].text.substring(0, rows[2].children[1].text.indexOf(RegExp(r'[^0-9]'))),
         );
-        data['totalMissingHours'] = rows[2].children[1].text;
-        data['totalUnexcusedMissingHours'] = rows[3].children[1].text.substring(
-          0,
-          rows[3].children[1].text.indexOf(RegExp('^[0-9]')),
+        data['totalUnexcusedMissingHours'] = int.tryParse(
+          rows[3].children[1].text.substring(0, rows[3].children[1].text.indexOf(RegExp('[^0-9]'))),
         );
       }
     }
