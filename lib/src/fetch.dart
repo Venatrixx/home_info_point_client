@@ -1,6 +1,6 @@
-part of 'hip_client.dart';
+part of 'fetch_handlers.dart';
 
-Future<HttpClientResponse> fetchData(HipConfig config) async {
+Future<HttpClientResponse> _fetchDataMethod(HipConfig config) async {
   String cookieSessionId = "";
 
   HttpClient client = HttpClient();
@@ -49,7 +49,7 @@ Future<HttpClientResponse> fetchData(HipConfig config) async {
   return clientResponse3;
 }
 
-Future<bool> verifyCredentials(HipConfig config) async {
+Future<bool> _verifyCredentialsMethod(HipConfig config) async {
   String cookieSessionId = "";
 
   HttpClient client = HttpClient();

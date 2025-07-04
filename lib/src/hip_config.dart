@@ -12,9 +12,15 @@ class HipConfig {
   /// Password of the user.
   final String password;
 
+  /// A custom timeout duration to use when fetching the data from HomeInfo.Point.
+  ///
+  /// Defaults to 4 seconds.
+  final Duration timeoutDuration;
+
   HipConfig({
     required this.schoolCode,
     required this.username,
     required this.password,
+    this.timeoutDuration = const Duration(seconds: 4),
   });
 }

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:home_info_point_client/src/fetch_handlers.dart';
 import 'package:html/parser.dart' as parser;
 
-part 'fetch.dart';
 part 'hip_config.dart';
 part 'interpreter.dart';
 
