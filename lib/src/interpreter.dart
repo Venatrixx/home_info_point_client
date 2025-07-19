@@ -15,13 +15,16 @@ Map interpretData(String htmlString) {
   data['level'] = int.tryParse(truncClassString.substring(0, truncClassString.indexOf(RegExp('[^0-9]'))));
 
   RegExp subjectTitlePattern = RegExp(r'[a-zA-ZäöüÄÖÜß\(\)]+[-]+[a-zA-ZäöüÄÖÜß]+\(+');
-  final htmlData = document.querySelectorAll('h3, table[class="t02"]');
+  final htmlData = document.querySelectorAll('h3, h2, table[class="t02"]');
 
   List subjects = [];
 
+  // loop through headlines and tables
   for (int i = 0; i < htmlData.length; i++) {
+    // check if element is a headline type h3
     if (htmlData[i].localName == 'h3' && RegExp(r'[a-zA-Z]+').hasMatch(htmlData[i].text)) {
       if (htmlData[i].text == "Fehltage") {
+        // read missing days
         List missingDays = [];
         for (final row in htmlData[i + 1].children[0].children..removeAt(0)) {
           Map missingDay = {};
@@ -33,6 +36,7 @@ Map interpretData(String htmlString) {
         }
         data['missingDays'] = missingDays;
       } else if (htmlData[i].text == "Fehlstunden") {
+        // read missing hours
         List missingHours = [];
         for (final row in htmlData[i + 1].children[0].children..removeAt(0)) {
           Map missingHour = {};
@@ -46,6 +50,7 @@ Map interpretData(String htmlString) {
         }
         data['missingHours'] = missingHours;
       } else if (htmlData[i].text == "Zusammenfassung") {
+        // read summary of missing days and hours
         final rows = htmlData[i + 1].children[0].children;
         data['totalMissingDays'] = int.tryParse(rows[0].children[1].text);
         data['totalUnexcusedMissingDays'] = int.tryParse(rows[1].children[1].text);
@@ -56,9 +61,43 @@ Map interpretData(String htmlString) {
         data['totalUnexcusedMissingHours'] = int.tryParse(
           rows[3].children[1].text.substring(0, rows[3].children[1].text.indexOf(RegExp('[^0-9]'))),
         );
+      } else if (htmlData[i].text == "Vergessene Hausaufgaben") {
+        // read forgotten homework
+        List entries = [];
+        for (final row in htmlData[i + 1].children[0].children..removeAt(0)) {
+          Map homework = {
+            'date': row.children[0].text,
+            'lesson': row.children[1].text,
+            'subject': row.children[2].text,
+            'comment': row.children[3].text,
+          };
+          entries.add(homework);
+        }
+        data['forgottenHomework'] = entries;
       }
     }
 
+    // check for last lessons headline
+    if (htmlData[i].localName == 'h2' &&
+        RegExp(r'[a-zA-Z]+').hasMatch(htmlData[i].text) &&
+        htmlData[i].text == "Unterricht") {
+      // interpret last lessons
+      List entries = [];
+      for (final row in htmlData[i + 1].children[0].children..removeAt(0)) {
+        Map homework = {
+          'date': row.children[0].text,
+          'lesson': row.children[1].text,
+          'subject': row.children[2].text,
+          'topic': row.children[3].text,
+          'task': row.children[4].text,
+          'type': row.children[5].text,
+        };
+        entries.add(homework);
+      }
+      data['lastLessons'] = entries;
+    }
+
+    // skip if element is not the headline of a subject table
     if (htmlData[i].localName != 'h3' || !subjectTitlePattern.hasMatch(htmlData[i].text.replaceAll(RegExp(r' '), ''))) {
       continue;
     }

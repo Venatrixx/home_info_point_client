@@ -50,7 +50,15 @@ class HipClient {
   /// **Remember** to call [fetch] before trying to get the json data, as this will return ``null`` otherwise.
   Future<String?> asJsonString() async {
     if (_response == null) return null;
-    return jsonEncode(interpretData((await _response!.transform(utf8.decoder).toList()).first));
+    return jsonEncode(await asJson());
+  }
+
+  /// Return a set of default test data.
+  ///
+  /// If `primary` is set to `true`, the level will be `8`, if set to `false`, it will be `11`. Grades are formatted respectably.
+  Future<dynamic> getTestData() async {
+    final file = File('./lib/assets/testdata.html');
+    return interpretData(await file.readAsString());
   }
 
   /// Use this method to override the clients config, effectively getting rid of the stored credentials.

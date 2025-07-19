@@ -23,4 +23,6 @@ class HipConfig {
     required this.password,
     this.timeoutDuration = const Duration(seconds: 4),
   });
+
+  HipConfig.empty() : schoolCode = '', username = '', password = '', timeoutDuration = const Duration(seconds: 4);
 }
