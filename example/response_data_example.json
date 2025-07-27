@@ -2,6 +2,28 @@
     "name": "Max Mustermann",
     "class": "10A (has to start with a number)",
     "level": 10,
+    "totalMissingDays": 2,
+    "totalUnexcusedMissingDays": 0,
+    "totalMissingHours": 3,
+    "totalUnexcusedMissingHours": 1,
+    "lastLessons": [
+        {
+            "date": "06.01.2020",
+            "lesson": "1. Std.",
+            "subject": "Deutsch",
+            "topic": "Epochen",
+            "homework": "LBS. 12/3",
+            "type": "Hausaufgabe"
+        }
+    ],
+    "forgottenHomework": [
+        {
+            "date": "08.01.2020",
+            "lesson": "4. Std",
+            "subject": "Englisch",
+            "comment": "worksheet American English"
+        }
+    ],
     "subjects": [
         {
             "name": "Deutsch",
@@ -43,9 +65,5 @@
             "excused": "entschuldigt | nicht entschieden | unentschuldigt",
             "semester": "2."
         }
-    ],
-    "totalMissingDays": 2,
-    "totalUnexcusedMissingDays": 0,
-    "totalMissingHours": 3,
-    "totalUnexcusedMissingHours": 1
+    ]
 }
