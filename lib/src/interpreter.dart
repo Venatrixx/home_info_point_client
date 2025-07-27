@@ -89,7 +89,7 @@ Map interpretData(String htmlString) {
           'lesson': row.children[1].text,
           'subject': row.children[2].text,
           'topic': row.children[3].text,
-          'task': row.children[4].text,
+          'homework': row.children[4].text,
           'type': row.children[5].text,
         };
         entries.add(homework);
