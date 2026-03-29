@@ -42,7 +42,7 @@ class HipClient {
   /// **Remember** to call [fetch] before trying to get the json data, as this will return ``null`` otherwise.
   dynamic asJson() async {
     if (_response == null) return null;
-    return interpretData((await _response!.transform(utf8.decoder).toList()).first);
+    return interpretData(await _response!.transform(utf8.decoder).join());
   }
 
   /// Get the data from the server as a `json` string.
