@@ -37,9 +37,8 @@ Map interpretData(String htmlString) {
         for (final row in htmlData[i + 1].children[0].children..removeAt(0)) {
           Map missingDay = {};
           missingDay['date'] = row.children[0].text;
-          missingDay['reason'] = row.children[1].text;
-          missingDay['excused'] = row.children[2].text;
-          missingDay['semester'] = row.children[3].text;
+          missingDay['excused'] = row.children[1].text;
+          missingDay['semester'] = row.children[2].text;
           missingDays.add(missingDay);
         }
         data['missingDays'] = missingDays;
@@ -51,9 +50,8 @@ Map interpretData(String htmlString) {
           missingHour['date'] = row.children[0].text;
           missingHour['subject'] = row.children[1].text;
           missingHour['time'] = row.children[2].text;
-          missingHour['reason'] = row.children[3].text;
-          missingHour['excused'] = row.children[4].text;
-          missingHour['semester'] = row.children[5].text;
+          missingHour['excused'] = row.children[3].text;
+          missingHour['semester'] = row.children[4].text;
           missingHours.add(missingHour);
         }
         data['missingHours'] = missingHours;
